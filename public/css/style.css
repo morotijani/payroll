@@ -1,0 +1,176 @@
+/* Base styles for on-screen viewing */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #e9ecef;
+    padding: 40px;
+    margin: 0;
+}
+
+.actions {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.actions button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.actions button:hover {
+    background-color: #0056b3;
+}
+
+/* 
+ * The physical dimensions of the Payslip 
+ * A5 landscape is exactly half of an A4 sheet (210mm x 148.5mm)
+ */
+.payslip-container {
+    background: #fff;
+    width: 210mm;
+    height: 148.5mm; 
+    margin: 0 auto;
+    padding: 15mm;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    color: #333;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid #2c3e50;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+.header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Employee Details Section */
+.employee-details {
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.employee-details table {
+    width: 100%;
+}
+
+.employee-details th {
+    text-align: left;
+    width: 120px;
+    color: #495057;
+    font-size: 14px;
+}
+
+.employee-details td {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Financials: Earnings & Deductions */
+.financials {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.column {
+    width: 48%;
+}
+
+.column h3 {
+    margin-top: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #bdc3c7;
+    padding-bottom: 5px;
+    color: #2980b9;
+}
+
+.column.deductions h3 {
+    color: #c0392b;
+}
+
+table.items {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table.items td {
+    padding: 4px 0;
+}
+
+table.items td.amount {
+    text-align: right;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+/* Footer Section */
+.footer {
+    border-top: 3px solid #2c3e50;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.net-pay {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.loan-balance {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* 
+ * PRINT STYLES 
+ * This ensures the payslip prints perfectly on the top half of an A4 paper
+ */
+@media print {
+    body {
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .payslip-container {
+        box-shadow: none;
+        margin: 0;
+        /* The browser/printer will handle the physical boundaries, 
+           we just tell it to take up the space it needs */
+    }
+
+    @page {
+        size: A4 portrait; /* Print on A4, occupying the top half */
+        margin: 10mm;
+    }
+}
