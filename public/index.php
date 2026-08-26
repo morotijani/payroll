@@ -130,6 +130,14 @@ elseif ($page === 'locked_payslip' && isset($_GET['id'])) {
     $controller->viewLockedPayslip((int)$_GET['id']);
 }
 // ---------------------------------------------------------
+// ROUTE: HELP & DOCUMENTATION
+// ---------------------------------------------------------
+elseif ($page === 'help') {
+    require_once '../app/Controllers/AdminController.php';
+    $controller = new AdminController($pdo);
+    $controller->help();
+}
+// ---------------------------------------------------------
 // 404
 // ---------------------------------------------------------
 else {

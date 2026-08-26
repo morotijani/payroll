@@ -200,6 +200,9 @@ if (isset($success)) { $_SESSION['success'] = $success; }
             <a href="index.php?page=history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
                 <span class="material-symbols-rounded">history</span> Payroll Runs
             </a>
+            <a href="index.php?page=help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
+                <span class="material-symbols-rounded">menu_book</span> Documentation
+            </a>
         </div>
     </div>
     

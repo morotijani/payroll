@@ -107,5 +107,12 @@ class AdminController {
         header("Location: index.php?page=admin");
         exit;
     }
+
+    /**
+     * Load the Help & Documentation page
+     */
+    public function help() {
+        require_once '../app/Views/help.php';
+    }
 }
 ?>
