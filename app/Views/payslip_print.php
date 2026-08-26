@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payslip - <?= htmlspecialchars($employee['name']) ?></title>
     <link rel="stylesheet" href="css/style.css">
+    <?php global $globalSettings; ?>
+    <link rel="icon" href="<?= !empty($globalSettings['company_logo']) ? htmlspecialchars($globalSettings['company_logo']) : 'images/default_logo.png' ?>" type="image/png">
 </head>
 <body>
 
@@ -19,8 +21,20 @@
         <!-- Header -->
         <div class="header">
             <div>
-                <h1><span class="material-symbols-rounded" style="font-size: 32px; color: var(--text-dark);">payments</span> ACME Corp</h1>
+                <h1 style="display: flex; align-items: center; gap: 12px;">
+                    <?php if (!empty($globalSettings['company_logo'])): ?>
+                        <img src="<?= htmlspecialchars($globalSettings['company_logo']) ?>" alt="Logo" style="height: 40px; border-radius: 4px;">
+                    <?php else: ?>
+                        <img src="images/default_logo.png" alt="Logo" style="height: 40px; border-radius: 4px;">
+                    <?php endif; ?>
+                    <?= htmlspecialchars($globalSettings['company_name'] ?? 'PayMaster') ?>
+                </h1>
                 <p>Official Digital Payslip</p>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 5px;">
+                    <?php if(!empty($globalSettings['company_address'])) echo htmlspecialchars($globalSettings['company_address']) . '<br>'; ?>
+                    <?php if(!empty($globalSettings['company_phone'])) echo htmlspecialchars($globalSettings['company_phone']) . ' | '; ?>
+                    <?php if(!empty($globalSettings['company_email'])) echo htmlspecialchars($globalSettings['company_email']); ?>
+                </div>
             </div>
             <div style="text-align: right;">
                 <p><strong>Pay Period:</strong> <?= isset($payPeriodOverride) ? $payPeriodOverride : date('F Y') ?></p>

@@ -13,6 +13,8 @@ if (isset($success)) { $_SESSION['success'] = $success; }
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <?php global $globalSettings; ?>
+    <link rel="icon" href="<?= !empty($globalSettings['company_logo']) ? htmlspecialchars($globalSettings['company_logo']) : 'images/default_logo.png' ?>" type="image/png">
     <style>
         :root {
             --bg-color: #F8F6FC;
@@ -180,29 +182,91 @@ if (isset($success)) { $_SESSION['success'] = $success; }
             border-radius: 16px;
             padding: 20px;
         }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            #wrapper { flex-direction: column !important; }
+            #sidebar-wrapper { 
+                width: 100%; 
+                min-height: auto; 
+                border-right: none; 
+                border-bottom: 1px solid #EBE7F2; 
+            }
+            .list-group { 
+                display: flex; 
+                flex-direction: row; 
+                overflow-x: auto; 
+                white-space: nowrap; 
+                margin-top: 0 !important;
+                padding: 10px 0;
+            }
+            .list-group-item { 
+                border: none !important;
+                border-bottom: 3px solid transparent !important;
+                padding: 10px 15px;
+            }
+            .list-group-item.active-nav {
+                border-right: none !important;
+                border-bottom: 3px solid var(--text-dark) !important;
+                background-color: transparent;
+            }
+            #page-content-wrapper { padding: 20px; }
+            .page-title { font-size: 1.8rem; }
+            
+            /* Hide the user profile on extreme mobile or make it flex-row */
+            .user-profile-bottom { display: none !important; }
+        }
     </style>
 </head>
 <body>
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <div class="sidebar-heading">
-            <span class="material-symbols-rounded" style="color: var(--text-dark); font-size: 28px;">payments</span> PayMaster
+    <div id="sidebar-wrapper" class="d-flex flex-column">
+        <div>
+            <div class="sidebar-heading d-flex align-items-center">
+                <?php global $globalSettings; ?>
+                <?php if (!empty($globalSettings['company_logo'])): ?>
+                    <img src="<?= htmlspecialchars($globalSettings['company_logo']) ?>" alt="Logo" style="height: 32px; margin-right: 10px; border-radius: 4px;">
+                <?php else: ?>
+                    <img src="images/default_logo.png" alt="Logo" style="height: 32px; margin-right: 10px; border-radius: 4px;">
+                <?php endif; ?>
+                <?= htmlspecialchars(strlen($globalSettings['company_name']) > 15 ? substr($globalSettings['company_name'], 0, 15).'...' : $globalSettings['company_name']) ?>
+            </div>
+            <div class="list-group list-group-flush mt-3">
+                <?php $curr = $_GET['page'] ?? 'admin'; ?>
+                <a href="index.php?page=admin" class="list-group-item <?= in_array($curr, ['admin','edit']) ? 'active-nav' : '' ?>">
+                    <span class="material-symbols-rounded">group</span> Employees
+                </a>
+                <a href="index.php?page=taxes" class="list-group-item <?= $curr == 'taxes' ? 'active-nav' : '' ?>">
+                    <span class="material-symbols-rounded">balance</span> Tax Bands
+                </a>
+                <a href="index.php?page=history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
+                    <span class="material-symbols-rounded">history</span> Payroll Runs
+                </a>
+                <a href="index.php?page=settings" class="list-group-item <?= $curr == 'settings' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
+                    <span class="material-symbols-rounded">settings</span> Settings
+                </a>
+                <a href="index.php?page=help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?>">
+                    <span class="material-symbols-rounded">menu_book</span> Documentation
+                </a>
+            </div>
         </div>
-        <div class="list-group list-group-flush mt-3">
-            <?php $curr = $_GET['page'] ?? 'admin'; ?>
-            <a href="index.php?page=admin" class="list-group-item <?= in_array($curr, ['admin','edit']) ? 'active-nav' : '' ?>">
-                <span class="material-symbols-rounded">group</span> Employees
-            </a>
-            <a href="index.php?page=taxes" class="list-group-item <?= $curr == 'taxes' ? 'active-nav' : '' ?>">
-                <span class="material-symbols-rounded">balance</span> Tax Bands
-            </a>
-            <a href="index.php?page=history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
-                <span class="material-symbols-rounded">history</span> Payroll Runs
-            </a>
-            <a href="index.php?page=help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
-                <span class="material-symbols-rounded">menu_book</span> Documentation
-            </a>
+        
+        <!-- User Profile Bottom -->
+        <div class="user-profile-bottom mt-auto p-4" style="border-top: 1px solid #EBE7F2; background-color: var(--card-bg);">
+            <div class="d-flex align-items-center mb-3">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--text-dark); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; margin-right: 12px;">
+                    <?= strtoupper(substr($_SESSION['admin_name'] ?? 'A', 0, 1)) ?>
+                </div>
+                <div style="line-height: 1.2;">
+                    <strong class="d-block" style="font-size: 0.95rem; color: var(--text-dark);"><?= htmlspecialchars($_SESSION['admin_name'] ?? 'Admin') ?></strong>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Super Admin</span>
+                </div>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="index.php?page=profile" class="btn btn-sm btn-light flex-grow-1 text-center" style="font-size: 0.8rem;">Profile</a>
+                <a href="index.php?page=logout" class="btn btn-sm btn-light text-danger flex-grow-1 text-center" style="font-size: 0.8rem;" onclick="return confirm('Are you sure you want to log out?');">Logout</a>
+            </div>
         </div>
     </div>
     
