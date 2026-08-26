@@ -22,8 +22,15 @@
                         <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($employee['name']) ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Designation</label>
-                        <input type="text" name="designation" class="form-control" value="<?= htmlspecialchars($employee['designation']) ?>" required>
+                        <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Designation</label>
+                        <select name="designation" class="form-select" required>
+                            <option value="">Select Designation</option>
+                            <?php foreach ($designations as $desig): ?>
+                                <option value="<?= htmlspecialchars($desig) ?>" <?= $employee['designation'] === $desig ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($desig) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-4">
                         <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Basic Income (GHS)</label>

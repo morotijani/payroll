@@ -179,6 +179,29 @@ elseif ($page === 'help') {
     $controller->help();
 }
 // ---------------------------------------------------------
+// ROUTE: DESIGNATIONS
+// ---------------------------------------------------------
+elseif ($page === 'designations') {
+    require_once '../app/Controllers/DesignationController.php';
+    $controller = new DesignationController($pdo);
+    $controller->index();
+}
+elseif ($page === 'add_designation' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../app/Controllers/DesignationController.php';
+    $controller = new DesignationController($pdo);
+    $controller->add($_POST);
+}
+elseif ($page === 'update_designation' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../app/Controllers/DesignationController.php';
+    $controller = new DesignationController($pdo);
+    $controller->update($_POST);
+}
+elseif ($page === 'delete_designation' && isset($_GET['id'])) {
+    require_once '../app/Controllers/DesignationController.php';
+    $controller = new DesignationController($pdo);
+    $controller->delete($_GET['id']);
+}
+// ---------------------------------------------------------
 // ROUTE: COMPANY SETTINGS
 // ---------------------------------------------------------
 elseif ($page === 'settings') {

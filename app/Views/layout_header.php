@@ -191,6 +191,17 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 min-height: auto; 
                 border-right: none; 
                 border-bottom: 1px solid #EBE7F2; 
+                padding-top: 10px;
+            }
+            .sidebar-heading {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+            .sidebar-heading img {
+                height: 24px !important;
+            }
+            .sidebar-heading .material-symbols-rounded {
+                font-size: 24px !important;
             }
             .list-group { 
                 display: flex; 
@@ -198,21 +209,58 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 overflow-x: auto; 
                 white-space: nowrap; 
                 margin-top: 0 !important;
-                padding: 10px 0;
+                padding: 0;
             }
             .list-group-item { 
                 border: none !important;
                 border-bottom: 3px solid transparent !important;
-                padding: 10px 15px;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+            .list-group-item .material-symbols-rounded {
+                font-size: 20px !important;
+                margin-right: 6px !important;
             }
             .list-group-item.active-nav {
                 border-right: none !important;
                 border-bottom: 3px solid var(--text-dark) !important;
                 background-color: transparent;
             }
-            #page-content-wrapper { padding: 20px; }
-            .page-title { font-size: 1.8rem; }
+            #page-content-wrapper { padding: 15px; }
+            .page-title { font-size: 1.3rem !important; }
             
+            /* Card and Inner Card Overrides */
+            .card { padding: 10px !important; }
+            .inner-card { padding: 10px !important; }
+            .card-body { padding: 15px !important; }
+            .px-5 { padding-left: 15px !important; padding-right: 15px !important; }
+            .p-5 { padding: 15px !important; }
+            .p-4 { padding: 15px !important; }
+            
+            /* Table and Font Overrides */
+            .table th { font-size: 0.65rem !important; padding: 10px 5px !important; }
+            .table td { font-size: 0.8rem !important; padding: 10px 5px !important; }
+            h2, h3, h4 { font-size: 1.1rem !important; }
+            
+            /* Form Inputs */
+            .form-control, .form-select { font-size: 0.85rem !important; padding: 10px 15px !important; }
+            
+            /* Buttons */
+            .btn { font-size: 0.8rem !important; padding: 8px 12px !important; }
+            .btn .material-symbols-rounded { font-size: 16px !important; }
+            .gap-2 { gap: 0.25rem !important; }
+            
+            /* Header Stacking (Title vs Button) */
+            .d-flex.justify-content-between.align-items-center.mb-5 {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 15px;
+                mb-3 !important;
+            }
+            .d-flex.justify-content-between.align-items-center.mb-5 .btn {
+                width: 100%;
+            }
+
             /* Hide the user profile on extreme mobile or make it flex-row */
             .user-profile-bottom { display: none !important; }
         }
@@ -236,6 +284,9 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 <?php $curr = $_GET['page'] ?? 'admin'; ?>
                 <a href="index.php?page=admin" class="list-group-item <?= in_array($curr, ['admin','edit']) ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">group</span> Employees
+                </a>
+                <a href="index.php?page=designations" class="list-group-item <?= $curr == 'designations' ? 'active-nav' : '' ?>">
+                    <span class="material-symbols-rounded">badge</span> Designations
                 </a>
                 <a href="index.php?page=taxes" class="list-group-item <?= $curr == 'taxes' ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">balance</span> Tax Bands

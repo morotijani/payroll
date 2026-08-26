@@ -15,6 +15,10 @@ class AdminController {
         $stmt = $this->pdo->query("SELECT * FROM employees ORDER BY id DESC");
         $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
+        // Fetch all designations
+        $desigStmt = $this->pdo->query("SELECT name FROM designations ORDER BY name ASC");
+        $designations = $desigStmt->fetchAll(PDO::FETCH_COLUMN);
+        
         // Grab any success messages from the session
         $success = isset($_SESSION['success']) ? $_SESSION['success'] : null;
         unset($_SESSION['success']);
@@ -61,6 +65,9 @@ class AdminController {
         if (!$employee) {
             die("Employee not found.");
         }
+        
+        $desigStmt = $this->pdo->query("SELECT name FROM designations ORDER BY name ASC");
+        $designations = $desigStmt->fetchAll(PDO::FETCH_COLUMN);
 
         require_once '../app/Views/edit_employee.php';
     }

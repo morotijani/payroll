@@ -69,7 +69,12 @@
                         <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="designation" class="form-control" placeholder="Designation" required>
+                        <select name="designation" class="form-select" required style="border-radius: 50px; padding: 15px 25px; border: 1px solid #EBE7F2; background-color: #F8F6FC;">
+                            <option value="">Select Designation</option>
+                            <?php foreach ($designations as $desig): ?>
+                                <option value="<?= htmlspecialchars($desig) ?>"><?= htmlspecialchars($desig) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-4">
                         <input type="number" step="0.01" name="basic_income" class="form-control" placeholder="Basic Income (GHS)" required>
