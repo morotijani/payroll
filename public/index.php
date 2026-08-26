@@ -58,6 +58,78 @@ elseif ($page === 'payslip') {
     require_once '../app/Views/payslip_print.php';
 } 
 // ---------------------------------------------------------
+// ROUTE: EDIT EMPLOYEE VIEW
+// ---------------------------------------------------------
+elseif ($page === 'edit') {
+    require_once '../app/Controllers/AdminController.php';
+    $controller = new AdminController($pdo);
+    $controller->edit(isset($_GET['id']) ? (int)$_GET['id'] : 0);
+}
+// ---------------------------------------------------------
+// ROUTE: UPDATE EMPLOYEE (POST)
+// ---------------------------------------------------------
+elseif ($page === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../app/Controllers/AdminController.php';
+    $controller = new AdminController($pdo);
+    $controller->update(isset($_GET['id']) ? (int)$_GET['id'] : 0, $_POST);
+}
+// ---------------------------------------------------------
+// ROUTE: DELETE EMPLOYEE
+// ---------------------------------------------------------
+elseif ($page === 'delete') {
+    require_once '../app/Controllers/AdminController.php';
+    $controller = new AdminController($pdo);
+    $controller->destroy(isset($_GET['id']) ? (int)$_GET['id'] : 0);
+}
+// ---------------------------------------------------------
+// ROUTE: TAX BANDS DASHBOARD
+// ---------------------------------------------------------
+elseif ($page === 'taxes') {
+    require_once '../app/Controllers/TaxController.php';
+    $controller = new TaxController($pdo);
+    $controller->index();
+}
+// ---------------------------------------------------------
+// ROUTE: UPDATE TAX BANDS (POST)
+// ---------------------------------------------------------
+elseif ($page === 'update_taxes' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../app/Controllers/TaxController.php';
+    $controller = new TaxController($pdo);
+    $controller->updateAll($_POST);
+}
+// ---------------------------------------------------------
+// ROUTE: PAYROLL HISTORY DASHBOARD
+// ---------------------------------------------------------
+elseif ($page === 'history') {
+    require_once '../app/Controllers/PayrollRunController.php';
+    $controller = new PayrollRunController($pdo);
+    $controller->history();
+}
+// ---------------------------------------------------------
+// ROUTE: RUN PAYROLL (POST)
+// ---------------------------------------------------------
+elseif ($page === 'run_payroll' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../app/Controllers/PayrollRunController.php';
+    $controller = new PayrollRunController($pdo);
+    $controller->run();
+}
+// ---------------------------------------------------------
+// ROUTE: VIEW LOCKED MONTH DETAILS
+// ---------------------------------------------------------
+elseif ($page === 'view_month' && isset($_GET['month'])) {
+    require_once '../app/Controllers/PayrollRunController.php';
+    $controller = new PayrollRunController($pdo);
+    $controller->viewMonth($_GET['month']);
+}
+// ---------------------------------------------------------
+// ROUTE: VIEW LOCKED PAYSLIP (A5 PRINT)
+// ---------------------------------------------------------
+elseif ($page === 'locked_payslip' && isset($_GET['id'])) {
+    require_once '../app/Controllers/PayrollRunController.php';
+    $controller = new PayrollRunController($pdo);
+    $controller->viewLockedPayslip((int)$_GET['id']);
+}
+// ---------------------------------------------------------
 // 404
 // ---------------------------------------------------------
 else {

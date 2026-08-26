@@ -1,75 +1,100 @@
-/* Base styles for on-screen viewing */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
+
+:root {
+    --bg-color: #F8F6FC;
+    --card-bg: #FFFFFF;
+    --text-dark: #1A0B2E;
+    --text-muted: #6B5C82;
+    --primary: #1A0B2E;
+    --border-color: #EBE7F2;
+}
+
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #e9ecef;
-    padding: 40px;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    padding: 40px 20px;
     margin: 0;
+    color: var(--text-dark);
 }
 
 .actions {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .actions button {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 28px;
     font-size: 16px;
-    border-radius: 5px;
+    font-weight: 600;
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-family: 'Outfit', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(26,11,46,0.1);
 }
 
 .actions button:hover {
-    background-color: #0056b3;
+    background-color: #311654;
+    transform: translateY(-2px);
 }
 
-/* 
- * The physical dimensions of the Payslip 
- * A5 landscape is exactly half of an A4 sheet (210mm x 148.5mm)
- */
+/* Material Icons alignment */
+.material-symbols-rounded {
+    vertical-align: middle;
+    font-size: 20px;
+}
+
 .payslip-container {
-    background: #fff;
+    background: var(--card-bg);
     width: 210mm;
-    height: 148.5mm; 
+    min-height: 148.5mm; 
     margin: 0 auto;
-    padding: 15mm;
+    padding: 40px;
     box-sizing: border-box;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
-    color: #333;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(26,11,46,0.05);
 }
 
-/* Header Section */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 3px solid #2c3e50;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
+    border-bottom: 2px solid var(--text-dark);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .header h1 {
     margin: 0;
-    font-size: 22px;
-    color: #2c3e50;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .header p {
     margin: 5px 0 0;
-    font-size: 14px;
-    color: #7f8c8d;
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
-/* Employee Details Section */
 .employee-details {
-    margin-bottom: 15px;
-    background-color: #f8f9fa;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
+    margin-bottom: 30px;
+    background-color: #F1EDF9;
+    padding: 20px 25px;
+    border-radius: 16px;
 }
 
 .employee-details table {
@@ -78,99 +103,158 @@ body {
 
 .employee-details th {
     text-align: left;
-    width: 120px;
-    color: #495057;
-    font-size: 14px;
+    width: 150px;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    padding-bottom: 4px;
 }
 
 .employee-details td {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 700;
+    padding-bottom: 12px;
+}
+.employee-details tr:last-child th,
+.employee-details tr:last-child td {
+    padding-bottom: 0;
 }
 
-/* Financials: Earnings & Deductions */
 .financials {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    gap: 40px;
+    margin-bottom: 25px;
 }
 
 .column {
-    width: 48%;
+    width: 50%;
 }
 
 .column h3 {
     margin-top: 0;
-    font-size: 16px;
-    border-bottom: 1px solid #bdc3c7;
-    padding-bottom: 5px;
-    color: #2980b9;
-}
-
-.column.deductions h3 {
-    color: #c0392b;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 table.items {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 table.items td {
-    padding: 4px 0;
+    padding: 8px 0;
+    color: var(--text-dark);
+    font-weight: 500;
 }
 
 table.items td.amount {
     text-align: right;
-    font-family: monospace;
-    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
 }
 
-/* Footer Section */
+.total-row td {
+    border-top: 1px dashed var(--border-color);
+    padding-top: 15px !important;
+    font-weight: 800 !important;
+    font-size: 16px;
+}
+
+.company-contributions {
+    background-color: #F8F6FC;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-contributions strong {
+    color: var(--text-dark);
+}
+
 .footer {
-    border-top: 3px solid #2c3e50;
-    padding-top: 15px;
+    border-top: 2px solid var(--text-dark);
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.net-pay {
-    font-size: 20px;
-    font-weight: bold;
-    color: #27ae60;
-}
-
 .loan-balance {
     font-size: 14px;
-    color: #7f8c8d;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.loan-balance strong {
+    color: var(--text-dark);
+    font-weight: 700;
 }
 
-/* 
- * PRINT STYLES 
- * This ensures the payslip prints perfectly on the top half of an A4 paper
- */
+.net-pay-box {
+    text-align: right;
+}
+
+.net-pay-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.net-pay-amount {
+    font-size: 32px;
+    font-weight: 800;
+    color: #27ae60;
+    letter-spacing: -0.5px;
+}
+
+/* Print optimizations */
 @media print {
     body {
         background-color: transparent;
         padding: 0;
-        margin: 0;
     }
-    
     .no-print {
         display: none !important;
     }
-    
     .payslip-container {
+        border-radius: 0;
+        border: none;
         box-shadow: none;
-        margin: 0;
-        /* The browser/printer will handle the physical boundaries, 
-           we just tell it to take up the space it needs */
+        padding: 0;
+        width: 100%;
+        min-height: auto;
     }
-
+    /* Enforce background colors in print for some browsers */
+    .employee-details {
+        background-color: #F1EDF9 !important;
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact;
+    }
+    .company-contributions {
+        background-color: #F8F6FC !important;
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact;
+    }
     @page {
-        size: A4 portrait; /* Print on A4, occupying the top half */
-        margin: 10mm;
+        size: A4 portrait;
+        margin: 15mm;
     }
 }

@@ -1,119 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Payroll Admin Dashboard</title>
-    <!-- Using a lightweight CSS framework for a quick, clean admin UI -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f8f9fa; padding-top: 30px; }
-        .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
-    </style>
-</head>
-<body>
-<div class="container">
-    
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>ACME Payroll Admin</h2>
-        <a href="index.php?page=admin" class="btn btn-outline-secondary">Refresh</a>
-    </div>
+<?php require 'layout_header.php'; ?>
 
-    <?php if ($success): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-    <?php endif; ?>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title mb-0">Global employees</h1>
+</div>
 
-    <div class="row">
-        <!-- Add Employee Form -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <strong>➕ Add New Employee</strong>
-                </div>
-                <div class="card-body">
-                    <form action="index.php?page=admin" method="POST">
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Designation</label>
-                            <input type="text" name="designation" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Basic Income (GHS)</label>
-                            <input type="number" step="0.01" name="basic_income" class="form-control" required>
-                        </div>
-                        
-                        <hr>
-                        <h6 class="text-muted">Allowances & Loans</h6>
-                        
-                        <div class="mb-2">
-                            <label class="form-label" style="font-size: 14px;">Risk Allowance</label>
-                            <input type="number" step="0.01" name="risk_allowance" class="form-control form-control-sm">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label" style="font-size: 14px;">Shift Allowance</label>
-                            <input type="number" step="0.01" name="shift_allowance" class="form-control form-control-sm">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label" style="font-size: 14px;">Responsibility Allowance</label>
-                            <input type="number" step="0.01" name="responsibility_allowance" class="form-control form-control-sm">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" style="font-size: 14px;">Loan Balance (Outstanding)</label>
-                            <input type="number" step="0.01" name="loan_balance" class="form-control form-control-sm">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100">Save Employee</button>
-                    </form>
-                </div>
+<div class="row g-4">
+    <!-- Employees List -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card h-100">
+            <div class="card-header">
+                Staff Roster
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Employee Details</th>
+                            <th>Designation</th>
+                            <th>Base Salary</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (empty($employees)): ?>
+                            <tr><td colspan="4" class="text-center py-5 text-muted">No employees found in the database.</td></tr>
+                        <?php else: ?>
+                            <?php foreach ($employees as $emp): ?>
+                                <tr>
+                                    <td>
+                                        <div class="fw-bold"><?= htmlspecialchars($emp['name']) ?></div>
+                                        <div style="color: var(--text-muted); font-size: 0.85rem;">ID: EMP-<?= str_pad($emp['id'], 4, '0', STR_PAD_LEFT) ?></div>
+                                    </td>
+                                    <td>
+                                        <span style="background-color: var(--white); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">
+                                            <?= htmlspecialchars($emp['designation']) ?>
+                                        </span>
+                                    </td>
+                                    <td class="fw-semibold">GHS <?= number_format($emp['basic_income'], 2) ?></td>
+                                    <td class="text-end">
+                                        <a href="index.php?page=edit&id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-primary">
+                                            <span class="material-symbols-rounded" style="font-size: 16px;">edit</span> Edit
+                                        </a>
+                                        <a href="index.php?page=payslip&id=<?= $emp['id'] ?>" target="_blank" class="btn btn-sm btn-light text-primary mx-1">
+                                            <span class="material-symbols-rounded" style="font-size: 16px;">receipt_long</span> Payslip
+                                        </a>
+                                        <a href="index.php?page=delete&id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-danger" onclick="return confirm('Delete this employee? This action cannot be undone.');">
+                                            <span class="material-symbols-rounded" style="font-size: 16px;">delete</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
-        <!-- Employees List -->
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-dark text-white">
-                    <strong>👥 Employee Directory</strong>
-                </div>
-                <div class="card-body p-0">
-                    <table class="table table-hover table-striped mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Basic (GHS)</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (empty($employees)): ?>
-                                <tr>
-                                    <td colspan="5" class="text-center py-3">No employees found. Add one on the left.</td>
-                                </tr>
-                            <?php else: ?>
-                                <?php foreach ($employees as $emp): ?>
-                                    <tr>
-                                        <td><?= $emp['id'] ?></td>
-                                        <td><strong><?= htmlspecialchars($emp['name']) ?></strong></td>
-                                        <td><?= htmlspecialchars($emp['designation']) ?></td>
-                                        <td><?= number_format($emp['basic_income'], 2) ?></td>
-                                        <td>
-                                            <!-- Link to generate and print their payslip -->
-                                            <a href="index.php?page=payslip&id=<?= $emp['id'] ?>" target="_blank" class="btn btn-sm btn-success">
-                                                📄 View Payslip
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
+    <!-- Add Employee Form -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card h-100">
+            <div class="card-header text-center" style="font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding-top: 30px;">
+                ADD NEW HIRE
+            </div>
+            <div class="card-body px-4">
+                <form action="index.php?page=admin" method="POST">
+                    <div class="mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="designation" class="form-control" placeholder="Designation" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="number" step="0.01" name="basic_income" class="form-control" placeholder="Basic Income (GHS)" required>
+                    </div>
+                    
+                    <div class="inner-card mb-4">
+                        <div class="text-center mb-3" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ALLOWANCES & DEDUCTIONS</div>
+                        
+                        <div class="mb-3">
+                            <input type="number" step="0.01" name="risk_allowance" class="form-control form-control-sm" placeholder="Risk Allowance (GHS)">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" step="0.01" name="shift_allowance" class="form-control form-control-sm" placeholder="Shift Allowance (GHS)">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" step="0.01" name="responsibility_allowance" class="form-control form-control-sm" placeholder="Responsibility (GHS)">
+                        </div>
+                        <div class="mb-0">
+                            <input type="number" step="0.01" name="loan_balance" class="form-control form-control-sm" placeholder="Loan Balance (GHS)">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-3 d-flex justify-content-center align-items-center">
+                        Save Employee <span class="material-symbols-rounded ms-2" style="font-size: 18px;">arrow_forward</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-</body>
-</html>
+
+<?php require 'layout_footer.php'; ?>
