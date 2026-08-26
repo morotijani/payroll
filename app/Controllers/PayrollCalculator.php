@@ -29,15 +29,28 @@ class PayrollCalculator {
     }
 
     /**
-     * Employee SSNIT: 5.5% of the Basic Income
+     * Employee SSNIT: 5.5% of the Basic Income (Deducted from Employee)
      */
     public function getSSNIT() {
-        // SSNIT is strictly on the basic income, not the gross
         return $this->basicIncome * 0.055;
     }
 
     /**
-     * Chargeable Income: Gross Salary - SSNIT
+     * Employer SSNIT: 13% of the Basic Income (Paid by the Company)
+     */
+    public function getEmployerSSNIT() {
+        return $this->basicIncome * 0.13;
+    }
+
+    /**
+     * Total SSNIT Remittance: 18.5% of the Basic Income (Sent to SSNIT)
+     */
+    public function getTotalSSNITRemittance() {
+        return $this->getSSNIT() + $this->getEmployerSSNIT();
+    }
+
+    /**
+     * Chargeable Income: Gross Salary - Employee SSNIT
      */
     public function getChargeableIncome() {
         return $this->getGrossSalary() - $this->getSSNIT();
@@ -91,6 +104,8 @@ class PayrollCalculator {
             'allowances' => round($this->allowances, 2),
             'gross_salary' => round($this->getGrossSalary(), 2),
             'ssnit' => round($this->getSSNIT(), 2),
+            'employer_ssnit' => round($this->getEmployerSSNIT(), 2),
+            'total_ssnit' => round($this->getTotalSSNITRemittance(), 2),
             'chargeable_income' => round($this->getChargeableIncome(), 2),
             'paye' => $this->getPAYE(),
             'loan_deduction' => round($this->loanDeduction, 2),

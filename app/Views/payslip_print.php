@@ -93,6 +93,10 @@
                         <td class="amount">GHS <?= number_format($breakdown['ssnit'], 2) ?></td>
                     </tr>
                     <tr>
+                        <td style="color: #666; font-size: 13px;"><em>Chargeable Income</em></td>
+                        <td class="amount" style="color: #666; font-size: 13px;"><em>GHS <?= number_format($breakdown['chargeable_income'], 2) ?></em></td>
+                    </tr>
+                    <tr>
                         <td>Income Tax (PAYE)</td>
                         <td class="amount">GHS <?= number_format($breakdown['paye'], 2) ?></td>
                     </tr>
@@ -111,6 +115,13 @@
                 </table>
             </div>
 
+        </div>
+
+        <!-- Informational Section -->
+        <div style="margin-bottom: 15px; background-color: #f8f9fa; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px; font-size: 13px; color: #555;">
+            <strong>Company Contributions (Not Deducted from Pay):</strong><br>
+            Employer SSNIT (13%): <strong>GHS <?= number_format($breakdown['employer_ssnit'], 2) ?></strong><br>
+            <em>Total SSNIT Remitted to GRA: GHS <?= number_format($breakdown['total_ssnit'], 2) ?></em>
         </div>
 
         <!-- Footer -->
