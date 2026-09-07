@@ -12,9 +12,10 @@
                 Staff Roster
             </div>
             <div class="card-body table-responsive">
-                <table class="table mb-0">
+                <table class="table table-hover mb-0" id="staffTable">
                     <thead>
                         <tr>
+                            <th class="ps-4" style="width: 50px;">#</th>
                             <th>Employee Details</th>
                             <th>Designation</th>
                             <th>Base Salary</th>
@@ -23,10 +24,11 @@
                     </thead>
                     <tbody>
                         <?php if (empty($employees)): ?>
-                            <tr><td colspan="4" class="text-center py-5 text-muted">No employees found in the database.</td></tr>
+                            <tr><td colspan="5" class="text-center py-5 text-muted">No employees found in the database.</td></tr>
                         <?php else: ?>
-                            <?php foreach ($employees as $emp): ?>
+                            <?php $rowIndex = 1; foreach ($employees as $emp): ?>
                                 <tr>
+                                    <td class="ps-4 fw-bold text-muted" style="vertical-align: middle;"><?= $rowIndex++ ?></td>
                                     <td>
                                         <div class="fw-bold"><?= htmlspecialchars($emp['name']) ?></div>
                                         <div style="color: var(--text-muted); font-size: 0.85rem;">

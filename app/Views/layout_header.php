@@ -8,6 +8,7 @@ if (isset($success)) { $_SESSION['success'] = $success; }
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayMaster Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <!-- Google Fonts: Outfit (Matches the image typography) and Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
