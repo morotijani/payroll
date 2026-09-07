@@ -99,7 +99,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="index.php?page=do_login" method="POST">
+    <form action="do_login" method="POST">
         <div class="mb-3">
             <input type="text" name="username" class="form-control" placeholder="Username" required>
         </div>

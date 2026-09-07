@@ -27,7 +27,7 @@ class SettingsController {
 
         if (empty($name)) {
             $_SESSION['error'] = "Company Name is required.";
-            header("Location: index.php?page=settings");
+            header("Location: settings");
             exit;
         }
 
@@ -37,7 +37,7 @@ class SettingsController {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             if (!in_array($files['company_logo']['type'], $allowedTypes)) {
                 $_SESSION['error'] = "Invalid file type. Only JPG, PNG, GIF, and WEBP are allowed.";
-                header("Location: index.php?page=settings");
+                header("Location: settings");
                 exit;
             }
             
@@ -66,7 +66,7 @@ class SettingsController {
         }
         
         $_SESSION['success'] = "Company settings updated successfully.";
-        header("Location: index.php?page=settings");
+        header("Location: settings");
         exit;
     }
 }

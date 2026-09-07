@@ -40,7 +40,7 @@ class TaxController {
         }
 
         $_SESSION['success'] = "Tax bands updated successfully! Future payslips will now use these new rates.";
-        header("Location: index.php?page=taxes");
+        header("Location: taxes");
         exit;
     }
 }

@@ -17,7 +17,7 @@
                     These details will appear on the official generated payslips.
                 </div>
 
-                <form action="index.php?page=update_settings" method="POST" enctype="multipart/form-data">
+                <form action="update_settings" method="POST" enctype="multipart/form-data">
                     
                     <div class="mb-4 d-flex align-items-center">
                         <?php if (!empty($settings['company_logo'])): ?>

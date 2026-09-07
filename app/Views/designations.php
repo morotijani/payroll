@@ -31,7 +31,7 @@
                                             <button type="button" class="btn btn-light text-primary" data-bs-toggle="modal" data-bs-target="#editModal<?= $designation['id'] ?>">
                                                 <span class="material-symbols-rounded">edit</span>
                                             </button>
-                                            <a href="index.php?page=delete_designation&id=<?= $designation['id'] ?>" class="btn btn-light text-danger" onclick="return confirm('Are you sure you want to delete this designation?');">
+                                            <a href="delete_designation?id=<?= $designation['id'] ?>" class="btn btn-light text-danger" onclick="return confirm('Are you sure you want to delete this designation?');">
                                                 <span class="material-symbols-rounded">delete</span>
                                             </a>
                                         </div>
@@ -45,7 +45,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body p-4">
-                                                        <form action="index.php?page=update_designation" method="POST">
+                                                        <form action="update_designation" method="POST">
                                                             <input type="hidden" name="id" value="<?= $designation['id'] ?>">
                                                             <div class="mb-4">
                                                                 <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Designation Name</label>
@@ -81,7 +81,7 @@
                 <span class="material-symbols-rounded me-2 text-primary">add_circle</span> Add New
             </div>
             <div class="card-body px-4 pb-4">
-                <form action="index.php?page=add_designation" method="POST">
+                <form action="add_designation" method="POST">
                     <div class="mb-4">
                         <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Designation Name <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" placeholder="e.g. Senior Developer" required>

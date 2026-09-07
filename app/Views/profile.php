@@ -12,7 +12,7 @@
                 <span class="material-symbols-rounded me-2 text-primary">person</span> Profile Details
             </div>
             <div class="card-body">
-                <form action="index.php?page=update_profile" method="POST">
+                <form action="update_profile" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" value="<?= htmlspecialchars($admin['username']) ?>" disabled style="background-color: #EBE7F2; cursor: not-allowed;">
@@ -38,7 +38,7 @@
                 <span class="material-symbols-rounded me-2 text-primary">lock</span> Change Password
             </div>
             <div class="card-body">
-                <form action="index.php?page=change_password" method="POST">
+                <form action="change_password" method="POST">
                     <div class="mb-3">
                         <input type="password" name="old_password" class="form-control" placeholder="Current Password" required>
                     </div>

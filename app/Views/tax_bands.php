@@ -14,7 +14,7 @@
         GHANA REVENUE AUTHORITY BRACKETS
     </div>
     <div class="card-body px-5 pb-5">
-        <form action="index.php?page=update_taxes" method="POST">
+        <form action="update_taxes" method="POST">
             <div class="table-responsive inner-card mb-4">
                 <table class="table mb-0">
                     <thead>

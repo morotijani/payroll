@@ -9,7 +9,7 @@ class AuthController {
     public function loginPage() {
         // If already logged in, redirect to admin
         if (isset($_SESSION['admin_id'])) {
-            header("Location: index.php?page=admin");
+            header("Location: admin");
             exit;
         }
         require_once '../app/Views/login.php';
@@ -24,11 +24,11 @@ class AuthController {
             $_SESSION['admin_id'] = $admin['id'];
             $_SESSION['admin_name'] = $admin['full_name'];
             $_SESSION['success'] = "Welcome back, " . htmlspecialchars($admin['full_name']) . "!";
-            header("Location: index.php?page=admin");
+            header("Location: admin");
             exit;
         } else {
             $_SESSION['error'] = "Invalid username or password.";
-            header("Location: index.php?page=login");
+            header("Location: login");
             exit;
         }
     }
@@ -37,7 +37,7 @@ class AuthController {
         session_destroy();
         session_start();
         $_SESSION['success'] = "You have been logged out successfully.";
-        header("Location: index.php?page=login");
+        header("Location: login");
         exit;
     }
 
@@ -58,7 +58,7 @@ class AuthController {
             $_SESSION['admin_name'] = $name; // Update session name
             $_SESSION['success'] = "Profile updated successfully.";
         }
-        header("Location: index.php?page=profile");
+        header("Location: profile");
         exit;
     }
 
@@ -83,7 +83,7 @@ class AuthController {
             $update->execute([$newHash, $_SESSION['admin_id']]);
             $_SESSION['success'] = "Password changed successfully.";
         }
-        header("Location: index.php?page=profile");
+        header("Location: profile");
         exit;
     }
 }

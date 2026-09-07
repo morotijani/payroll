@@ -2,7 +2,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-5">
     <div>
-        <a href="index.php?page=admin" class="btn btn-light rounded-pill mb-3 d-inline-flex align-items-center" style="font-size: 0.85rem; padding: 6px 16px;">
+        <a href="admin" class="btn btn-light rounded-pill mb-3 d-inline-flex align-items-center" style="font-size: 0.85rem; padding: 6px 16px;">
             <span class="material-symbols-rounded me-1" style="font-size: 16px;">arrow_back</span> Back to Directory
         </a>
         <h1 class="page-title mb-0">Edit Employee</h1>
@@ -16,7 +16,7 @@
                 UPDATE <?= htmlspecialchars($employee['name']) ?>
             </div>
             <div class="card-body px-5 pb-5">
-                <form action="index.php?page=update&id=<?= $employee['id'] ?>" method="POST">
+                <form action="update?id=<?= $employee['id'] ?>" method="POST">
                     <div class="mb-3">
                         <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Full Name</label>
                         <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($employee['name']) ?>" required>

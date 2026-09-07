@@ -33,7 +33,7 @@ class PayrollRunController {
         $checkStmt->execute([$currentMonth]);
         if ($checkStmt->fetchColumn() > 0) {
             $_SESSION['error'] = "Payroll for " . date('F Y') . " has already been processed!";
-            header("Location: index.php?page=history");
+            header("Location: history");
             exit;
         }
 
@@ -43,7 +43,7 @@ class PayrollRunController {
 
         if (empty($employees)) {
             $_SESSION['error'] = "No employees found to process.";
-            header("Location: index.php?page=admin");
+            header("Location: admin");
             exit;
         }
 
@@ -90,7 +90,7 @@ class PayrollRunController {
         }
 
         $_SESSION['success'] = "Successfully processed payroll for $processedCount employees for " . date('F Y') . "!";
-        header("Location: index.php?page=history");
+        header("Location: history");
         exit;
     }
 

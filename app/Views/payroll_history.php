@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h1 class="page-title mb-0">Payroll History</h1>
     
-    <form action="index.php?page=run_payroll" method="POST" class="m-0" onsubmit="return confirm('Are you sure you want to run payroll for the current month? This will lock the payslips into history.');">
+    <form action="run_payroll" method="POST" class="m-0" onsubmit="return confirm('Are you sure you want to run payroll for the current month? This will lock the payslips into history.');">
         <button type="submit" class="btn btn-primary px-4 py-3 d-flex align-items-center shadow-sm">
             <span class="material-symbols-rounded me-2">play_circle</span> Run Payroll for <?= date('F Y') ?>
         </button>
@@ -47,7 +47,7 @@
                         <td class="fw-semibold text-muted">GHS <?= number_format($run['total_paye'], 2) ?></td>
                         <td class="fw-bold" style="color: #27ae60;">GHS <?= number_format($run['total_net'], 2) ?></td>
                         <td class="text-end">
-                            <a href="index.php?page=view_month&month=<?= $run['payroll_month'] ?>" class="btn btn-sm btn-light text-primary rounded-pill px-4 d-inline-flex align-items-center">
+                            <a href="view_month?month=<?= $run['payroll_month'] ?>" class="btn btn-sm btn-light text-primary rounded-pill px-4 d-inline-flex align-items-center">
                                 View Details <span class="material-symbols-rounded ms-1" style="font-size: 18px;">arrow_forward</span>
                             </a>
                         </td>

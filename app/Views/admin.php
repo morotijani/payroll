@@ -42,13 +42,13 @@
                                     </td>
                                     <td class="fw-semibold">GHS <?= number_format($emp['basic_income'], 2) ?></td>
                                     <td class="text-end">
-                                        <a href="index.php?page=edit&id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-primary">
+                                        <a href="edit?id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-primary">
                                             <span class="material-symbols-rounded" style="font-size: 16px;">edit</span> Edit
                                         </a>
-                                        <a href="index.php?page=payslip&id=<?= $emp['id'] ?>" target="_blank" class="btn btn-sm btn-light text-primary mx-1">
+                                        <a href="payslip?id=<?= $emp['id'] ?>" target="_blank" class="btn btn-sm btn-light text-primary mx-1">
                                             <span class="material-symbols-rounded" style="font-size: 16px;">receipt_long</span> Payslip
                                         </a>
-                                        <a href="index.php?page=delete&id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-danger" onclick="return confirm('Delete this employee? This action cannot be undone.');">
+                                        <a href="delete?id=<?= $emp['id'] ?>" class="btn btn-sm btn-light text-danger" onclick="return confirm('Delete this employee? This action cannot be undone.');">
                                             <span class="material-symbols-rounded" style="font-size: 16px;">delete</span>
                                         </a>
                                     </td>
@@ -68,7 +68,7 @@
                 ADD NEW HIRE
             </div>
             <div class="card-body px-4">
-                <form action="index.php?page=admin" method="POST">
+                <form action="admin" method="POST">
                     <div class="mb-3">
                         <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                     </div>

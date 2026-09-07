@@ -30,7 +30,7 @@ class DesignationController {
                 }
             }
         }
-        header("Location: index.php?page=designations");
+        header("Location: designations");
         exit;
     }
 
@@ -53,7 +53,7 @@ class DesignationController {
                 }
             }
         }
-        header("Location: index.php?page=designations");
+        header("Location: designations");
         exit;
     }
 
@@ -61,7 +61,7 @@ class DesignationController {
         $stmt = $this->pdo->prepare("DELETE FROM designations WHERE id = ?");
         $stmt->execute([$id]);
         $_SESSION['success'] = "Designation deleted successfully.";
-        header("Location: index.php?page=designations");
+        header("Location: designations");
         exit;
     }
 }

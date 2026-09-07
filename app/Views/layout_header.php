@@ -283,22 +283,22 @@ if (isset($success)) { $_SESSION['success'] = $success; }
             </div>
             <div class="list-group list-group-flush mt-3">
                 <?php $curr = $_GET['page'] ?? 'admin'; ?>
-                <a href="index.php?page=admin" class="list-group-item <?= in_array($curr, ['admin','edit']) ? 'active-nav' : '' ?>">
+                <a href="admin" class="list-group-item <?= in_array($curr, ['admin','edit']) ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">group</span> Employees
                 </a>
-                <a href="index.php?page=designations" class="list-group-item <?= $curr == 'designations' ? 'active-nav' : '' ?>">
+                <a href="designations" class="list-group-item <?= $curr == 'designations' ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">badge</span> Designations
                 </a>
-                <a href="index.php?page=taxes" class="list-group-item <?= $curr == 'taxes' ? 'active-nav' : '' ?>">
+                <a href="taxes" class="list-group-item <?= $curr == 'taxes' ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">balance</span> Tax Bands
                 </a>
-                <a href="index.php?page=history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
+                <a href="history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">history</span> Payroll Runs
                 </a>
-                <a href="index.php?page=settings" class="list-group-item <?= $curr == 'settings' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
+                <a href="settings" class="list-group-item <?= $curr == 'settings' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
                     <span class="material-symbols-rounded">settings</span> Settings
                 </a>
-                <a href="index.php?page=help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?>">
+                <a href="help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">menu_book</span> Documentation
                 </a>
             </div>
@@ -316,8 +316,8 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 </div>
             </div>
             <div class="d-flex gap-2">
-                <a href="index.php?page=profile" class="btn btn-sm btn-light flex-grow-1 text-center" style="font-size: 0.8rem;">Profile</a>
-                <a href="index.php?page=logout" class="btn btn-sm btn-light text-danger flex-grow-1 text-center" style="font-size: 0.8rem;" onclick="return confirm('Are you sure you want to log out?');">Logout</a>
+                <a href="profile" class="btn btn-sm btn-light flex-grow-1 text-center" style="font-size: 0.8rem;">Profile</a>
+                <a href="logout" class="btn btn-sm btn-light text-danger flex-grow-1 text-center" style="font-size: 0.8rem;" onclick="return confirm('Are you sure you want to log out?');">Logout</a>
             </div>
         </div>
     </div>

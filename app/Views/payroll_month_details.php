@@ -2,7 +2,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-5">
     <div>
-        <a href="index.php?page=history" class="btn btn-light rounded-pill mb-3 d-inline-flex align-items-center" style="font-size: 0.85rem; padding: 6px 16px;">
+        <a href="history" class="btn btn-light rounded-pill mb-3 d-inline-flex align-items-center" style="font-size: 0.85rem; padding: 6px 16px;">
             <span class="material-symbols-rounded me-1" style="font-size: 16px;">arrow_back</span> Back to History
         </a>
         <h1 class="page-title mb-0">Locked Payslips: <?= date('F Y', strtotime($month . '-01')) ?></h1>
@@ -40,7 +40,7 @@
                     <td class="fw-semibold" style="color: #c0392b;">GHS <?= number_format($ps['paye'], 2) ?></td>
                     <td class="fw-bold" style="color: #27ae60;">GHS <?= number_format($ps['net_pay'], 2) ?></td>
                     <td class="text-end">
-                        <a href="index.php?page=locked_payslip&id=<?= $ps['id'] ?>" target="_blank" class="btn btn-sm btn-light text-primary rounded-pill px-3 d-inline-flex align-items-center">
+                        <a href="locked_payslip?id=<?= $ps['id'] ?>" target="_blank" class="btn btn-sm btn-light text-primary rounded-pill px-3 d-inline-flex align-items-center">
                             <span class="material-symbols-rounded me-1" style="font-size: 16px;">print</span> Print A5
                         </a>
                     </td>

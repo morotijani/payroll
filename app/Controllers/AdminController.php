@@ -50,7 +50,7 @@ class AdminController {
         $_SESSION['success'] = "Employee '{$data['name']}' was added successfully!";
         
         // Redirect back to admin dashboard
-        header("Location: index.php?page=admin");
+        header("Location: admin");
         exit;
     }
 
@@ -99,7 +99,7 @@ class AdminController {
         ]);
 
         $_SESSION['success'] = "Employee '{$data['name']}' updated successfully!";
-        header("Location: index.php?page=admin");
+        header("Location: admin");
         exit;
     }
 
@@ -111,7 +111,7 @@ class AdminController {
         $stmt->execute([$id]);
 
         $_SESSION['success'] = "Employee deleted successfully!";
-        header("Location: index.php?page=admin");
+        header("Location: admin");
         exit;
     }
 

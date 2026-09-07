@@ -1,0 +1,21 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /payroll/
+
+    # 1. If it's literally just the root folder, serve the admin page
+    RewriteRule ^$ public/index.php?page=admin [QSA,L]
+
+    # 2. If the requested file physically exists in the root, serve it
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # 3. If the requested file physically exists in the /public folder, serve it from there
+    RewriteCond %{DOCUMENT_ROOT}/payroll/public/$1 -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # 4. Otherwise, pass the clean URL to the router
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php?page=$1 [QSA,L]
+</IfModule>
