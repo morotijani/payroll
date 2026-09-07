@@ -29,7 +29,9 @@
                                 <tr>
                                     <td>
                                         <div class="fw-bold"><?= htmlspecialchars($emp['name']) ?></div>
-                                        <div style="color: var(--text-muted); font-size: 0.85rem;">ID: EMP-<?= str_pad($emp['id'], 4, '0', STR_PAD_LEFT) ?></div>
+                                        <div style="color: var(--text-muted); font-size: 0.85rem;">
+                                            ID: <?= (strpos(strtoupper($emp['designation']), 'SECURITY') !== false ? 'MEGSEC' : 'MEG') . str_pad($emp['id'], 3, '0', STR_PAD_LEFT) ?>
+                                        </div>
                                     </td>
                                     <td>
                                         <span style="background-color: var(--white); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">
@@ -77,23 +79,23 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <input type="number" step="0.01" name="basic_income" class="form-control" placeholder="Basic Income (GHS)" required>
+                        <input type="number" step="0.01" min="0" name="basic_income" class="form-control" placeholder="Basic Income (GHS)" required>
                     </div>
                     
                     <div class="inner-card mb-4">
                         <div class="text-center mb-3" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ALLOWANCES & DEDUCTIONS</div>
                         
                         <div class="mb-3">
-                            <input type="number" step="0.01" name="risk_allowance" class="form-control form-control-sm" placeholder="Risk Allowance (GHS)">
+                            <input type="number" step="0.01" min="0" name="risk_allowance" class="form-control form-control-sm" placeholder="Risk Allowance (GHS)">
                         </div>
                         <div class="mb-3">
-                            <input type="number" step="0.01" name="shift_allowance" class="form-control form-control-sm" placeholder="Shift Allowance (GHS)">
+                            <input type="number" step="0.01" min="0" name="shift_allowance" class="form-control form-control-sm" placeholder="Shift Allowance (GHS)">
                         </div>
                         <div class="mb-3">
-                            <input type="number" step="0.01" name="responsibility_allowance" class="form-control form-control-sm" placeholder="Responsibility (GHS)">
+                            <input type="number" step="0.01" min="0" name="responsibility_allowance" class="form-control form-control-sm" placeholder="Responsibility (GHS)">
                         </div>
                         <div class="mb-0">
-                            <input type="number" step="0.01" name="loan_balance" class="form-control form-control-sm" placeholder="Loan Balance (GHS)">
+                            <input type="number" step="0.01" min="0" name="loan_balance" class="form-control form-control-sm" placeholder="Loan Balance (GHS)">
                         </div>
                     </div>
                     

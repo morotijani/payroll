@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                     <td><?= htmlspecialchars($employee['name']) ?></td>
-                    <td>EMP-<?= str_pad($employee['id'], 4, '0', STR_PAD_LEFT) ?></td>
+                    <td><?= (strpos(strtoupper($employee['designation']), 'SECURITY') !== false ? 'MEGSEC' : 'MEG') . str_pad($employee['id'], 3, '0', STR_PAD_LEFT) ?></td>
                     <td><?= htmlspecialchars($employee['designation']) ?></td>
                 </tr>
             </table>

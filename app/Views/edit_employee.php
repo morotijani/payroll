@@ -34,27 +34,29 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Basic Income (GHS)</label>
-                        <input type="number" step="0.01" name="basic_income" class="form-control" value="<?= htmlspecialchars($employee['basic_income']) ?>" required>
+                        <input type="number" step="0.01" min="0" name="basic_income" class="form-control" value="<?= htmlspecialchars($employee['basic_income']) ?>" required>
                     </div>
                     
                     <div class="inner-card mb-4">
                         <div class="text-center mb-3" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ALLOWANCES & DEDUCTIONS</div>
                         
-                        <div class="mb-3">
-                            <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Risk Allowance</label>
-                            <input type="number" step="0.01" name="risk_allowance" class="form-control" value="<?= htmlspecialchars($employee['risk_allowance']) ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Shift Allowance</label>
-                            <input type="number" step="0.01" name="shift_allowance" class="form-control" value="<?= htmlspecialchars($employee['shift_allowance']) ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Responsibility Allowance</label>
-                            <input type="number" step="0.01" name="responsibility_allowance" class="form-control" value="<?= htmlspecialchars($employee['responsibility_allowance']) ?>">
-                        </div>
-                        <div class="mb-0">
-                            <label class="form-label ms-2 text-muted" style="font-size: 0.8rem;">Loan Balance</label>
-                            <input type="number" step="0.01" name="loan_balance" class="form-control" value="<?= htmlspecialchars($employee['loan_balance']) ?>">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Risk Allowance</label>
+                                <input type="number" step="0.01" min="0" name="risk_allowance" class="form-control" value="<?= htmlspecialchars($employee['risk_allowance']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Shift Allowance</label>
+                                <input type="number" step="0.01" min="0" name="shift_allowance" class="form-control" value="<?= htmlspecialchars($employee['shift_allowance']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Responsibility</label>
+                                <input type="number" step="0.01" min="0" name="responsibility_allowance" class="form-control" value="<?= htmlspecialchars($employee['responsibility_allowance']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted ms-2" style="font-size: 0.8rem;">Loan Balance</label>
+                                <input type="number" step="0.01" min="0" name="loan_balance" class="form-control" value="<?= htmlspecialchars($employee['loan_balance']) ?>">
+                            </div>
                         </div>
                     </div>
                     
