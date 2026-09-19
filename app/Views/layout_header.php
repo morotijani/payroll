@@ -44,10 +44,16 @@ if (isset($success)) { $_SESSION['success'] = $success; }
         
         /* Sidebar Styles */
         #sidebar-wrapper {
-            min-height: 100vh;
+            position: sticky;
+            top: 0;
+            height: 100vh;
             width: 260px;
             background: var(--white);
             border-right: 1px solid #EBE7F2;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            align-self: flex-start;
         }
         .sidebar-heading { 
             padding: 2rem 1.5rem; 
