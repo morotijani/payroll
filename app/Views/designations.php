@@ -31,9 +31,9 @@
                                             <button type="button" class="btn btn-light text-primary" data-bs-toggle="modal" data-bs-target="#editModal<?= $designation['id'] ?>">
                                                 <span class="material-symbols-rounded">edit</span>
                                             </button>
-                                            <a href="delete_designation?id=<?= $designation['id'] ?>" class="btn btn-light text-danger" onclick="return confirm('Are you sure you want to delete this designation?');">
+                                            <button type="button" class="btn btn-light text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $designation['id'] ?>">
                                                 <span class="material-symbols-rounded">delete</span>
-                                            </a>
+                                            </button>
                                         </div>
 
                                         <!-- Edit Modal -->
@@ -55,6 +55,27 @@
                                                                 Update Designation <span class="material-symbols-rounded ms-2" style="font-size: 18px;">save</span>
                                                             </button>
                                                         </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade text-start" id="deleteModal<?= $designation['id'] ?>" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 10px 40px rgba(26,11,46,0.1);">
+                                                    <div class="modal-header border-0 pb-0">
+                                                        <h5 class="modal-title text-danger" style="font-weight: 700;">Delete Designation</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body p-4">
+                                                        <p class="text-muted mb-4">Are you sure you want to delete the designation <strong><?= htmlspecialchars($designation['name']) ?></strong>? This action cannot be undone.</p>
+                                                        <div class="d-flex gap-3">
+                                                            <button type="button" class="btn btn-light w-50 py-3" data-bs-dismiss="modal" style="border-radius: 50px;">Cancel</button>
+                                                            <a href="delete_designation?id=<?= $designation['id'] ?>" class="btn btn-danger w-50 d-flex justify-content-center align-items-center py-3" style="border-radius: 50px;">
+                                                                Yes, Delete <span class="material-symbols-rounded ms-2" style="font-size: 18px;">delete</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -163,6 +163,14 @@ elseif ($page === 'view_month' && isset($_GET['month'])) {
     $controller->viewMonth($_GET['month']);
 }
 // ---------------------------------------------------------
+// ROUTE: EXPORT PAYROLL TO EXCEL
+// ---------------------------------------------------------
+elseif ($page === 'export_payroll' && isset($_GET['month'])) {
+    require_once '../app/Controllers/PayrollRunController.php';
+    $controller = new PayrollRunController($pdo);
+    $controller->exportExcel($_GET['month']);
+}
+// ---------------------------------------------------------
 // ROUTE: VIEW LOCKED PAYSLIP (A5 PRINT)
 // ---------------------------------------------------------
 elseif ($page === 'locked_payslip' && isset($_GET['id'])) {

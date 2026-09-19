@@ -146,5 +146,72 @@ class PayrollRunController {
         
         require_once '../app/Views/payroll_month_details.php';
     }
+
+    /**
+     * Export all locked payslips for a given month to CSV
+     */
+    public function exportExcel($month) {
+        $stmt = $this->pdo->prepare("SELECT * FROM payslips WHERE payroll_month = ?");
+        $stmt->execute([$month]);
+        $payslips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($payslips)) {
+            $_SESSION['error'] = "No records found for this month.";
+            header("Location: history");
+            exit;
+        }
+
+        $filename = "payroll_export_" . $month . ".csv";
+
+        // Set headers for file download
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=' . $filename);
+
+        $output = fopen('php://output', 'w');
+
+        // Write CSV column headers
+        fputcsv($output, [
+            'Employee ID',
+            'Employee Name',
+            'Designation',
+            'Payroll Month',
+            'Basic Income (GHS)',
+            'Allowances (GHS)',
+            'Gross Salary (GHS)',
+            'SSNIT 5.5% (GHS)',
+            'Employer SSNIT 13% (GHS)',
+            'Chargeable Income (GHS)',
+            'PAYE Tax (GHS)',
+            'Loan Deduction (GHS)',
+            'Net Pay (GHS)',
+            'Processed On'
+        ]);
+
+        // Write rows
+        foreach ($payslips as $ps) {
+            $empIdPrefix = (strpos(strtoupper($ps['designation']), 'SECURITY') !== false) ? 'MEGSEC' : 'MEG';
+            $formattedId = $empIdPrefix . str_pad($ps['employee_id'], 3, '0', STR_PAD_LEFT);
+            
+            fputcsv($output, [
+                $formattedId,
+                $ps['employee_name'],
+                $ps['designation'],
+                $ps['payroll_month'],
+                $ps['basic_income'],
+                $ps['allowances'],
+                $ps['gross_salary'],
+                $ps['ssnit'],
+                $ps['employer_ssnit'],
+                $ps['chargeable_income'],
+                $ps['paye'],
+                $ps['loan_deduction'],
+                $ps['net_pay'],
+                $ps['created_at']
+            ]);
+        }
+
+        fclose($output);
+        exit;
+    }
 }
 ?>

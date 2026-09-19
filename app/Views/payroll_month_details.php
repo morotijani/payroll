@@ -7,6 +7,11 @@
         </a>
         <h1 class="page-title mb-0">Locked Payslips: <?= date('F Y', strtotime($month . '-01')) ?></h1>
     </div>
+    <div>
+        <a href="export_payroll?month=<?= htmlspecialchars($month) ?>" class="btn btn-primary rounded-pill px-4 py-2 d-inline-flex align-items-center">
+            <span class="material-symbols-rounded me-2">download</span> Export to Excel
+        </a>
+    </div>
 </div>
 
 <div class="card">
