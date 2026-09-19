@@ -195,7 +195,8 @@ if (isset($success)) { $_SESSION['success'] = $success; }
             #wrapper { flex-direction: column !important; }
             #sidebar-wrapper { 
                 width: 100%; 
-                min-height: auto; 
+                height: auto !important;
+                position: relative !important;
                 border-right: none; 
                 border-bottom: 1px solid #EBE7F2; 
                 padding-top: 10px;
@@ -223,6 +224,7 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 border-bottom: 3px solid transparent !important;
                 padding: 12px 15px;
                 font-size: 0.95rem;
+                margin-top: 0 !important;
             }
             .list-group-item .material-symbols-rounded {
                 font-size: 20px !important;
@@ -262,7 +264,7 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 flex-direction: column !important;
                 align-items: flex-start !important;
                 gap: 15px;
-                mb-3 !important;
+                margin-bottom: 1rem !important;
             }
             .d-flex.justify-content-between.align-items-center.mb-5 .btn {
                 width: 100%;
@@ -301,7 +303,7 @@ if (isset($success)) { $_SESSION['success'] = $success; }
                 <a href="history" class="list-group-item <?= in_array($curr, ['history', 'view_month']) ? 'active-nav' : '' ?>">
                     <span class="material-symbols-rounded">history</span> Payroll Runs
                 </a>
-                <a href="settings" class="list-group-item <?= $curr == 'settings' ? 'active-nav' : '' ?> mt-4" style="border-top: 1px solid #EBE7F2;">
+                <a href="settings" class="list-group-item <?= $curr == 'settings' ? 'active-nav' : '' ?> mt-md-4 mt-0" style="border-top: 1px solid #EBE7F2;">
                     <span class="material-symbols-rounded">settings</span> Settings
                 </a>
                 <a href="help" class="list-group-item <?= $curr == 'help' ? 'active-nav' : '' ?>">
@@ -323,11 +325,32 @@ if (isset($success)) { $_SESSION['success'] = $success; }
             </div>
             <div class="d-flex gap-2">
                 <a href="profile" class="btn btn-sm btn-light flex-grow-1 text-center" style="font-size: 0.8rem;">Profile</a>
-                <a href="logout" class="btn btn-sm btn-light text-danger flex-grow-1 text-center" style="font-size: 0.8rem;" onclick="return confirm('Are you sure you want to log out?');">Logout</a>
+                <button type="button" class="btn btn-sm btn-light text-danger flex-grow-1 text-center" style="font-size: 0.8rem;" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+            </div>
+            </div>
+        </div>
+        
+    <!-- Logout Modal (Must be outside sidebar to prevent clipping) -->
+    <div class="modal fade text-start" id="logoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 16px; border: none; box-shadow: 0 10px 40px rgba(26,11,46,0.1);">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title" style="font-weight: 700; color: var(--text-dark);">Confirm Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4">Are you sure you want to securely log out of the PayMaster Dashboard?</p>
+                    <div class="d-flex gap-3">
+                        <button type="button" class="btn btn-light w-50 py-3" data-bs-dismiss="modal" style="border-radius: 50px;">Cancel</button>
+                        <a href="logout" class="btn btn-danger w-50 d-flex justify-content-center align-items-center py-3" style="border-radius: 50px;">
+                            Yes, Logout <span class="material-symbols-rounded ms-2" style="font-size: 18px;">logout</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
